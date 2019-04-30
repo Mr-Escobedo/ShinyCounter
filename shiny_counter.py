@@ -62,4 +62,4 @@ if __name__ == "__main__":
     odds = "1/512"
     memory = "shiny_rowlet_count.cnt"
     shiny_method = "Eggs Hatched"
-    ShinyCounter(size=size, target=target, checkpoint =checkpoint, odds=odds, memory=memory, shiny_method=shiny_method).run()
+    ShinyCounter(size = size, target = target, checkpoint = checkpoint, odds = odds, memory = memory, shiny_method = shiny_method).run()
