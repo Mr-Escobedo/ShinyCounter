@@ -1,5 +1,5 @@
 class Counter:
-    '''Class for Shiny Counter program'''
+    '''Class for Counter'''
     def __init__(self, count = 0, step = 1):
         '''Constructor for Counter'''
         self.count = count
@@ -10,6 +10,9 @@ class Counter:
     def __str__(self):
         '''Used when Counter instance is passed into print()'''
         return "Count: {}".format(self.count)
+    def __int__(self):
+        '''Used when a Counter instance is passed into int()'''
+        return self.count
     def up(self):
         '''Increments the count'''
         self.count += self.step
@@ -20,6 +23,9 @@ class Counter:
     def reset(self):
         '''Sets the current count to 0'''
         self.count = 0
+    def set_step(self, step = 1):
+        '''Resets the step'''
+        self.step = step
     def show(self):
         '''Returns the current count'''
         return self.count
