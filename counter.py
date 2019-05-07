@@ -29,3 +29,24 @@ class Counter:
     def show(self):
         '''Returns the current count'''
         return self.count
+    def __add__(self, other):
+        '''Overloads + for Counter class'''
+        if type(other) == Counter:
+            self.count += other.count
+        else:
+            self.count += other
+        return Counter(self.count, self.step)
+    def __radd__(self, other):
+        '''Overloads + for Counter class'''
+        return self.__add__(other)
+    def __sub__(self, other):
+        '''Overloads - for Counter class'''
+        if type(other) == Counter:
+            self.count -= other.count
+        else:
+            self.count -= other
+        return Counter(self.count, self.step)
+    def __rsub__(self, other):
+        '''Overloads - for Counter class'''
+        return self.__sub__(other)
+
