@@ -3,7 +3,7 @@ import tkinter
 import pickle
 
 class ShinyCounter:
-    def __init__(self, size = "300x200", target = "shiny_rowlet.gif", checkpoint = 1, odds = "1/8192", memory = "shiny_rowlet_count.cnt", shiny_method = "Soft Resets"):
+    def __init__(self, size = "300x200", target = "shiny_rowlet.gif", checkpoint = 1, odds = "1/8192", memory = "shiny_rowlet_count.cnt", hunt_method = "Soft Resets"):
         '''Constructor for Counter GUI'''
         self.root_window = tkinter.Tk()
         self.root_window.geometry(size)
@@ -14,7 +14,7 @@ class ShinyCounter:
         self.checkpoint = checkpoint
         self.odds = odds
         self.memory = memory
-        self.shiny_method = shiny_method
+        self.hunt_method = hunt_method
 
     def save(self):
         '''Saves the current count to a save file'''
@@ -36,7 +36,7 @@ class ShinyCounter:
         if self.count.show() % self.checkpoint == 0:
             self.save()
 
-        self.show.set("{}: {}\nOdds: {}".format(self.shiny_method, self.count.show(), self.odds))
+        self.show.set("{}: {}\nOdds: {}".format(self.hunt_method, self.count.show(), self.odds))
 
     def run(self):
         '''Runs the GUI'''
@@ -50,7 +50,7 @@ class ShinyCounter:
         p.pack(side = tkinter.TOP)
         self.show = tkinter.StringVar()
         info = tkinter.Label(self.root_window, textvariable = self.show)
-        self.show.set("{}: {}\nOdds: {}".format(self.shiny_method, self.count.show(), self.odds))
+        self.show.set("{}: {}\nOdds: {}".format(self.hunt_method, self.count.show(), self.odds))
         info.pack(side = tkinter.TOP)
         self.root_window.bind("<KeyPress>", self.key)
         self.root_window.mainloop()
@@ -61,5 +61,5 @@ if __name__ == "__main__":
     checkpoint = 5
     odds = "1/512"
     memory = "shiny_rowlet_count.cnt"
-    shiny_method = "Eggs Hatched"
-    ShinyCounter(size = size, target = target, checkpoint = checkpoint, odds = odds, memory = memory, shiny_method = shiny_method).run()
+    hunt_method = "Eggs Hatched"
+    ShinyCounter(size = size, target = target, checkpoint = checkpoint, odds = odds, memory = memory, hunt_method = hunt_method).run()
