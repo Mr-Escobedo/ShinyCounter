@@ -29,7 +29,7 @@ class ShinyCounter:
         elif event.keysym in ["Down", "BackSpace", "Left", "2", "4"]:
             self.count.down()
         elif event.keysym in ["Return", "5"]:
-            self.count.reset()
+            self.count.reset_count()
         elif event.keysym in ["Shift_L", "Shift_R"]:
             self.save()
 
