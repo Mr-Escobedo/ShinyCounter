@@ -3,7 +3,7 @@ import tkinter
 import pickle
 
 class ShinyCounter:
-    def __init__(self, size = "300x200", target = "shiny_rowlet.gif", checkpoint = 1, odds = "1/8192", memory = "shiny_rowlet_count.cnt", hunt_method = "Soft Resets"):
+    def __init__(self, size, target, checkpoint, odds, memory, hunt_method):
         '''Constructor for Counter GUI'''
         self.root_window = tkinter.Tk()
         self.root_window.geometry(size)
@@ -42,7 +42,8 @@ class ShinyCounter:
         '''Runs the GUI'''
         try:
             file = open("{}".format(self.memory), "rb")
-            self.count = Counter(count = pickle.load(file), step = 1)
+            self.count = Counter(count = pickle.load(file))
+            file.close()
         except:
             self.count = Counter()
         p = tkinter.Label(self.root_window, image = self.photo)
