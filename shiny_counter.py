@@ -1,6 +1,4 @@
 from counter import Counter
-from random import randrange
-from encrypt_number import encrypt, decrypt
 import tkinter
 import pickle
 
@@ -17,13 +15,11 @@ class ShinyCounter:
         self.odds = odds
         self.memory = memory
         self.hunt_method = hunt_method
-        self.encrypt_key = randrange(1,101)
 
     def save(self):
         '''Saves the current count to a save file'''
         outfile = open(self.memory, "wb")
-        pickle.dump(encrypt(self.count.show(), self.encrypt_key), outfile)
-        pickle.dump(self.encrypt_key, outfile)
+        pickle.dump(self.count.show(), outfile)
         outfile.close()
 
     def key(self, event):
@@ -33,7 +29,7 @@ class ShinyCounter:
         elif event.keysym in ["Down", "BackSpace", "Left", "2", "4", "a", "s"]:
             self.count.down()
         elif event.keysym in ["Return", "5"]:
-             self.count.reset_count()
+            self.count.reset_count()
         elif event.keysym in ["Shift_L", "Shift_R"]:
             self.save()
 
@@ -46,7 +42,7 @@ class ShinyCounter:
         '''Runs the GUI'''
         try:
             file = open("{}".format(self.memory), "rb")
-            self.count = Counter(decrypt(pickle.load(file), pickle.load(file)))
+            self.count = Counter(count = pickle.load(file))
             file.close()
         except:
             self.count = Counter()
@@ -61,7 +57,7 @@ class ShinyCounter:
         self.root_window.mainloop()
 
 if __name__ == "__main__":
-    size = "300x125"
+    size = "300x135"
     target = "shiny_rowlet.gif"
     checkpoint = 5
     odds = "1/512"
