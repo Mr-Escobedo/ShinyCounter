@@ -20,7 +20,7 @@ class Counter:
         '''Decrements the count if the current count is positive'''
         if self.count > 0:
             self.count -= self.step
-    def reset(self):
+    def reset_count(self):
         '''Sets the current count to 0'''
         self.count = 0
     def set_step(self, step = 1):
