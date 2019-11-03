@@ -16,13 +16,17 @@ class ShinyCounter:
         self.memory = memory
         self.hunt_method = hunt_method
 
-    def save(self):
+    def save(self) -> None:
         '''Saves the current count to a save file'''
         outfile = open(self.memory, "wb")
         pickle.dump(self.count.show(), outfile)
         outfile.close()
 
-    def key(self, event):
+    def check_save(self) -> bool:
+        '''Determines if the Shiny Counter should save'''
+        return not self.count.show() % self.checkpoint
+
+    def key(self, event) -> None:
         '''Handles key input'''
         if event.keysym in ["space", "Up", "Right", "8", "6", "w", "d"]:
             self.count.up()
@@ -33,7 +37,7 @@ class ShinyCounter:
         elif event.keysym in ["Shift_L", "Shift_R"]:
             self.save()
 
-        if self.count.show() % self.checkpoint == 0:
+        if self.check_save():
             self.save()
 
         self.show.set("{}: {}\nOdds: {}".format(self.hunt_method, self.count.show(), self.odds))
