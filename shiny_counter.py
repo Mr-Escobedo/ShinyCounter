@@ -67,6 +67,7 @@ class ShinyCounter:
         self.show.set("{}: {}\nOdds: {}".format(self.hunt_method, self.count.show(), self.odds))
         info.pack(side = tkinter.TOP)
         self.root_window.bind("<KeyPress>", self.key)
+        self.root_window.protocol("WM_DELETE_WINDOW", self.save())
         self.root_window.mainloop()
 
 if __name__ == "__main__":
