@@ -34,6 +34,11 @@ class ShinyCounter:
         '''Checks if counter should save count to file'''
         return not self.count.show() % self.checkpoint
 
+    def on_close(self):
+        '''Runs when the GUI is closed'''
+        self.save()
+        self.root_window.destroy()
+
     def key(self, event):
         '''Handles key input'''
         if event.keysym in ["space", "Up", "Right", "8", "6", "w", "d"]:
@@ -67,7 +72,7 @@ class ShinyCounter:
         self.show.set("{}: {}\nOdds: {}".format(self.hunt_method, self.count.show(), self.odds))
         info.pack(side = tkinter.TOP)
         self.root_window.bind("<KeyPress>", self.key)
-        self.root_window.protocol("WM_DELETE_WINDOW", self.save())
+        self.root_window.protocol("WM_DELETE_WINDOW", self.on_close)
         self.root_window.mainloop()
 
 if __name__ == "__main__":
