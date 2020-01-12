@@ -36,7 +36,8 @@ class ShinyCounter:
 
     def on_close(self):
         '''Runs when the GUI is closed'''
-        self.save()
+        if self.count.show() != self.previous_count:
+            self.save()
         self.root_window.destroy()
 
     def key(self, event):
@@ -60,9 +61,11 @@ class ShinyCounter:
         try:
             file = open("{}".format(self.memory), "rb")
             self.count = Counter(pickle.load(file))
+            self.previous_count = self.count.show()
             file.close()
         except:
             self.count = Counter()
+            self.previous_count = 0
         p = tkinter.Label(self.root_window, image = self.photo)
         p.photo = self.photo
         p.pack(side = tkinter.TOP)
