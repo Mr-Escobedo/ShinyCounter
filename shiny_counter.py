@@ -36,7 +36,7 @@ class ShinyCounter:
 
     def on_close(self):
         '''Runs when the GUI is closed'''
-        if self.count.show() != self.previous_count:
+        if self.count.show() != self.previous_count and self.count.show != self.current_save:
             self.save()
         self.root_window.destroy()
 
@@ -50,6 +50,7 @@ class ShinyCounter:
              self.count.reset()
         elif event.keysym in ["Shift_L", "Shift_R"]:
             self.save()
+            self.current_save = self.count.show()
 
         if self.check_save():
             self.save()
