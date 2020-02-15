@@ -83,7 +83,12 @@ if __name__ == "__main__":
     size = "300x250"
     target = "shiny_rookidee.gif"
     checkpoint = 5
-    odds = "1/1365"
+    shinyCharm = True
+    masuda = True
+    if shinyCharm and masuda:
+        odds = "1/512"
+    if masuda and not shinyCharm:
+        odds = "1/683"
     memory = "shiny_rookidee_count.cnt"
     hunt_method = "Eggs Hatched"
     ShinyCounter(size = size, target = target, checkpoint = checkpoint, odds = odds, memory = memory, hunt_method = hunt_method).run()
