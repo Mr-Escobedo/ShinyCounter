@@ -14,6 +14,8 @@ class CounterTests
 	{
 		testUp();
 		testDown();
+		testNewCount();
+		testNewStep();
 	}
 
 	static void testUp()
@@ -23,7 +25,8 @@ class CounterTests
 			c.up();
 		}
 
-		System.out.println("Counter should be 10: " + c.get_count());
+		assert c.get_count() == 10 : "ERROR: " + c.get_count() + " != 10";
+
 	}
 
 	static void testDown()
@@ -33,6 +36,23 @@ class CounterTests
 			c.down();
 		}
 
-		System.out.println("Counter should be 0: " + c.get_count());
+		assert c.get_count() == 0 : "ERROR: " + c.get_count() + " != 0";
+	}
+
+	static void testNewCount()
+	{
+		c.set_count(100);
+		assert c.get_count() == 100 : "ERROR: " + c.get_count() +  " != 100"; 
+	}
+
+	static void testNewStep()
+	{
+		c.set_step(5);
+		for(int i = 0; i < 5; i++)
+		{
+			c.up();
+		}
+
+		assert c.get_count() == 125 : "ERROR: " + c.get_count() + " != 125";
 	}
 }
