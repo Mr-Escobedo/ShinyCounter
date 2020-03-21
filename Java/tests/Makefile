@@ -2,6 +2,7 @@ all: test
 test: CounterTests.java Counter.java
 	javac CounterTests.java
 run:
-	java CounterTests
+	java -ea CounterTests
 clean:
 	/bin/rm *.class
+	/bin/rm *.cnt

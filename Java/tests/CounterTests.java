@@ -16,6 +16,7 @@ class CounterTests
 		testDown();
 		testNewCount();
 		testNewStep();
+		testReadWriteToFile();
 	}
 
 	static void testUp()
@@ -54,5 +55,19 @@ class CounterTests
 		}
 
 		assert c.get_count() == 125 : "ERROR: " + c.get_count() + " != 125";
+	}
+
+	static void testReadWriteToFile()
+	{
+		c.save();
+		c.set_count(0);
+		c.set_step(10);
+
+		assert c.get_count() == 0 : "ERROR: " + c.get_count() + " != 0";
+
+		c.read();
+
+		assert c.get_count() == 125 : "ERROR: " + c.get_count() + " != 125";
+
 	}
 }
