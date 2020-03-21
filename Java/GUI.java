@@ -7,7 +7,7 @@ class GUI
 	static Counter count;
 	public static void main(String[] args)
 	{
-		ImageIcon target_image = new ImageIcon("shiny_charmander.gif");
+		ImageIcon target_image = new ImageIcon("../Resources/shiny_charmander.gif");
 		count = new Counter(0, 1, "shiny_charmander.cnt");
 		JFrame window = new JFrame("Pokémon Shiny Counter");
 		JLabel target = new JLabel();
