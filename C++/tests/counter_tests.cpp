@@ -82,6 +82,18 @@ TEST(CounterTest, testWritingToFile)
 
 	ASSERT_EQ(saved_count, 20);
 }
+
+TEST(CounterTest, testReadingFromFile)
+{
+	int start = 100;
+	Counter c = Counter(start, 1, "read.cnt");
+	c.write();
+	Counter c2 = Counter(0, 1, "read.cnt");
+	ASSERT_EQ(start, c.get_count());
+	ASSERT_EQ(0, c2.get_count());
+	c2.read();
+	ASSERT_EQ(start, c2.get_count());
+}
 	
 int main(int argc, char** argv)
 {
