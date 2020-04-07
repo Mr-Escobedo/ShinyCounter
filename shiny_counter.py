@@ -11,7 +11,7 @@ class ShinyCounter:
         self.root_window = tkinter.Tk()
         self.root_window.geometry(size)
         self.root_window.iconbitmap(self.resource_path("pokeball.ico"))
-        self.root_window.resizable(False, False)
+        self.root_window.resizable(True, True)
         self.root_window.title("Pokémon Shiny Counter")
         self.photo = tkinter.PhotoImage(file = self.resource_path(target))
         self.checkpoint = checkpoint
@@ -69,12 +69,12 @@ class ShinyCounter:
             self.previous_count = 0
         p = tkinter.Label(self.root_window, image = self.photo)
         p.photo = self.photo
-        p.pack(side = tkinter.TOP)
+        p.place(relx = 0.5, rely = 0.35, anchor = tkinter.CENTER)
         self.show = tkinter.StringVar()
         info = tkinter.Label(self.root_window, textvariable = self.show)
         info.config(font = ("TkDefaultFont", 20))
         self.show.set("{}: {}\nOdds: {}".format(self.hunt_method, self.count.show(), self.odds))
-        info.pack(side = tkinter.TOP)
+        info.place(relx = 0.5, rely = 0.85, anchor = tkinter.CENTER)
         self.root_window.bind("<KeyPress>", self.key)
         self.root_window.protocol("WM_DELETE_WINDOW", self.on_close)
         self.root_window.mainloop()
