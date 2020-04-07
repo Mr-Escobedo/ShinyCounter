@@ -11,6 +11,8 @@ public:
         void reset_step(int new_step = 1);
         int get_count();
         int get_step();
+	void write();
+	void read();
 
 };
 
