@@ -1,7 +1,8 @@
-all: GUI
-GUI: GUI.java
-	javac *.java
-run:
-	java GUI
+all: ShinyCounter
+ShinyCounter: ShinyCounter.java Counter.java
+	javac ShinyCounter.java
+run: ShinyCounter.class Counter.class
+	java ShinyCounter
 clean:
-	/bin/rm *.class
+	/bin/rm ShinyCounter.class
+	/bin/rm Counter.class

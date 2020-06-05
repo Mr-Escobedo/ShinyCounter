@@ -2,31 +2,39 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-class GUI
+public class GUI implements ActionListener
 {
-	static Counter count;
+	int count = 0;
+	JLabel label = null;
+	public GUI()
+	{
+		JFrame frame = new JFrame();
+		JButton button = new JButton("Click Me");
+		button.addActionListener(this);
+		JPanel panel = new JPanel();
+		label = new JLabel("Number of Clicks: 0");
+
+		panel.setBorder(BorderFactory.createEmptyBorder(30,30,10,30));
+		panel.setLayout(new GridLayout(0, 1));
+		panel.add(button);
+		panel.add(label);
+
+		frame.add(panel, BorderLayout.CENTER);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setTitle("GUI Tutorial");
+		frame.pack();
+		frame.setVisible(true);
+	}
+
 	public static void main(String[] args)
 	{
-		ImageIcon target_image = new ImageIcon("../Resources/shiny_charmander.gif");
-		count = new Counter(0, 1, "shiny_charmander.cnt");
-		JFrame window = new JFrame("Pokémon Shiny Counter");
-		JLabel target = new JLabel();
-		JLabel display = new JLabel();
-		JLabel odds = new JLabel("Odds: 1/512");
-		odds.setFont(new Font("Serif", Font.PLAIN, 30));
-		display.setFont(new Font("Serif", Font.PLAIN, 30));
-		display.setText("Eggs Hatched: " + count.get_count());
-		target.setIcon(target_image);
+		new GUI();
+	}
 
-		display.setBounds(85, 160, 300, 200);
-		odds.setBounds(100, 190, 200, 200);
-		target.setBounds(75, 25, 200, 200);
-		window.add(target);
-		window.add(display);
-		window.add(odds);
-		window.setSize(400,400);
-		window.setLayout(null);
-		window.setVisible(true);
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+		count++;
+		label.setText("Number of Clicks: " + count);
 	}
 }

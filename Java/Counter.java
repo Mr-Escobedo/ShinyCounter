@@ -1,84 +1,73 @@
-//Author: Kevin C. Escobedo
-//Email: escobedo001@gmail.com
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.*;
 
-class Counter
+public class Counter
 {
-	int count;
-	int step;
-	String fileName;
-	public Counter(int count, int step, String fileName)
+	private int count = 0;
+	private int step = 0;
+
+	public Counter()
 	{
-		this.count = count;
-		this.step = step;
-		this.fileName = fileName;
+		count = 0;
+		step = 1;
+	}
+
+	public Counter(int newCount, int newStep)
+	{
+		count = newCount;
+		step = newStep;
 	}
 
 	void up()
 	{
-		this.count += this.step;
+		count += step;
 	}
 
 	void down()
 	{
-		this.count -= this.step;
+		count -= step;
 	}
 
-	int get_count()
+	void resetCount()
 	{
-		return this.count;
+		count = 0;
 	}
 
-	int get_step()
+	int getCount()
 	{
-		return this.step;
+		return count;
 	}
 
-	void set_count(int newCount)
+	void setCount(int newCount)
 	{
-		this.count = newCount;
+		count = newCount;
 	}
 
-	void set_step(int newStep)
+	void save() throws IOException
 	{
-		this.step = newStep;
-	}
-
-	void save()
-	{
-		try
-		{
-			FileWriter file = new FileWriter(this.fileName);
-			int data = this.get_count();
-			file.write(Integer.toString(data));
-			file.close();
-		}
-		catch(IOException e)
-		{
-
-		}
+		FileWriter fw = new FileWriter("count.sav");
+		fw.write(count + "");
+		fw.close();
 	}
 
 	void read()
 	{
+		Scanner input = null;
 		try
 		{
-			File file = new File(this.fileName);
-			Scanner reader = new Scanner(file);
-			while(reader.hasNextLine())
+			input = new Scanner(new File("count.sav"));
+			while(input.hasNextLine())
 			{
-				String data = reader.nextLine();
-				this.set_count(Integer.parseInt(data));
+				String line = input.nextLine();
+				int storedValue = Integer.parseInt(line);
+				setCount(storedValue);
 			}
-			reader.close();
+
 		}
 		catch(FileNotFoundException e)
 		{
-
+			
 		}
 	}
+
 }
